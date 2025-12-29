@@ -157,7 +157,7 @@ async function openHouseholdModal(soHK) {
   document.getElementById('modalChuHo').textContent = household.ho_ten;
   document.getElementById('modalDiaChi').textContent = household.address;
   try {
-    const response = await fetch(`http://localhost:3000/api/get/householdMembers/${household.id_ho_khau}`);
+    const response = await fetch(`/api/get/householdMembers/${household.id_ho_khau}`);
     const data = await response.json();
     household.members = data;
   }
@@ -202,7 +202,7 @@ async function renderChangeHistory(household) {
   if (!historyDiv) return;
   try {
     // console.log(id);
-    const response = await fetch(`http://localhost:3000/api/get/changeHistory/${id}`,
+    const response = await fetch(`/api/get/changeHistory/${id}`,
       {
         method: 'GET',
         headers: {
@@ -431,7 +431,7 @@ function bindEditHouseholdModal() {
 
       // dataService.saveHouseholds(originalRows);
       // console.log(changedHousehold);
-      const response = await fetch(`http://localhost:3000/api/put/updateHousehold/${household.id_ho_khau}`, {
+      const response = await fetch(`/api/put/updateHousehold/${household.id_ho_khau}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -604,7 +604,7 @@ function bindSplitHouseholdModal() {
     try {
       const token = await localStorage.getItem('userToken') || localStorage.getItem('token');
       // console.log(">>>>>", token);
-      const response = await fetch("http://localhost:3000/api/createNewHouseholdFromMembers", {
+      const response = await fetch("/api/createNewHouseholdFromMembers", {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -738,7 +738,7 @@ function bindAddMemberModal() {
       const token = await localStorage.getItem('userToken') || localStorage.getItem('token');
       // console.log(">>>>>", token);
       console.log(">   ", JSON.stringify(newMember));
-      await fetch(`http://localhost:3000/api/post/household/addNewMember`, {
+      await fetch(`/api/post/household/addNewMember`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -823,7 +823,7 @@ function bindRemoveMemberReasonModal() {
     let response = '';
     for (const id of removedMembers) {
       try {
-        const respone = await fetch(`http://localhost:3000/api/delete/householdMember/${id}`, {
+        const respone = await fetch(`/api/delete/householdMember/${id}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ old_id_ho_khau: household.id_ho_khau, chuyen_den: 'Không rõ', ghi_chu: reason })
@@ -1109,7 +1109,7 @@ function bindAddFamilyMembersModal() {
         const token = await localStorage.getItem('userToken') || localStorage.getItem('token');
         console.log(">>>>>", token);
         console.log("ids>>>>", aNewHousehold);
-        const respone = await fetch("http://localhost:3000/api/post/createNewHousehold", {
+        const respone = await fetch("/api/post/createNewHousehold", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1119,7 +1119,7 @@ function bindAddFamilyMembersModal() {
           body: JSON.stringify(aNewHousehold)
         });
         const data = await respone.json();
-        await fetch(`http://localhost:3000/api/action/approveTemp/${data.id}`, {
+        await fetch(`/api/action/approveTemp/${data.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

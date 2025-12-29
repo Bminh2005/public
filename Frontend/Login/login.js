@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. CẤU HÌNH KẾT NỐI SERVER
   // ==========================================================
   // Server chạy trên port 3000, prefix là /api (theo server.js)
-  const API_BASE_URL = "http://localhost:3000/api";
+  const API_BASE_URL = "/api";
 
   // ==========================================================
   // 2. KHAI BÁO BIẾN DOM

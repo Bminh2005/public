@@ -69,7 +69,7 @@ async function fetchUserProfile() {
     return null;
   }
   try {
-    const response = await fetch(`http://localhost:3000/api/resident/${cccd}`);
+    const response = await fetch(`/api/resident/${cccd}`);
     const data = await response.json();
     return data;
   } catch (error) {

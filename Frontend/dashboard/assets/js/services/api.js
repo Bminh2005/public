@@ -13,7 +13,7 @@ export function getMonthlyData(year) {
 
 export async function getHouseholds() {
   try {
-    const response = await fetch("http://localhost:3000/api/get/allHouseholds");
+    const response = await fetch("/api/get/allHouseholds");
     const data = await response.json();
     return data;
   }
@@ -29,7 +29,7 @@ export async function getResidenceShare() {
     const headers = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    const resp = await fetch('http://localhost:3000/api/statistics/dashboard', { method: 'GET', headers });
+    const resp = await fetch('/api/statistics/dashboard', { method: 'GET', headers });
     if (!resp.ok) {
       try {
         const txt = await resp.text();
@@ -65,7 +65,7 @@ export async function getGenderStats() {
     const headers = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    const resp = await fetch('http://localhost:3000/api/statistics/dashboard', { method: 'GET', headers });
+    const resp = await fetch('/api/statistics/dashboard', { method: 'GET', headers });
     if (!resp.ok) {
       try {
         const txt = await resp.text();
@@ -96,7 +96,7 @@ export async function getAgeGroupStats() {
     const headers = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    const resp = await fetch('http://localhost:3000/api/statistics/dashboard', { method: 'GET', headers });
+    const resp = await fetch('/api/statistics/dashboard', { method: 'GET', headers });
     if (!resp.ok) {
       try {
         const txt = await resp.text();
@@ -145,7 +145,7 @@ export async function getEventStats(fromDate, toDate) {
     if (fromDate) params.append('startDate', fromDate);
     if (toDate) params.append('endDate', toDate);
 
-    const url = `http://localhost:3000/api/statistics/dashboard${params.toString() ? '?' + params.toString() : ''
+    const url = `/api/statistics/dashboard${params.toString() ? '?' + params.toString() : ''
       }`;
 
     // 3. Thực hiện gọi API
@@ -201,7 +201,7 @@ export function getProfile() {
 export async function getAbsentDashboardData() {
   const token = localStorage.getItem('userToken') || localStorage.getItem('token');
   // URL mới: /api/manageabsent/dashboard
-  const response = await fetch('http://localhost:3000/api/manageabsent/dashboard', {
+  const response = await fetch('/api/manageabsent/dashboard', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -214,7 +214,7 @@ export async function getAbsentDashboardData() {
 
 export async function getResidentDashboardData() {
   const token = localStorage.getItem('userToken') || localStorage.getItem('token');
-  const response = await fetch('http://localhost:3000/api/residentManage/dashboard', {
+  const response = await fetch('/api/residentManage/dashboard', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -259,7 +259,7 @@ export function deleteHousehold(soHK) {
 export async function updateResidentData(id, data) {
   const token = localStorage.getItem('userToken') || localStorage.getItem('token');
 
-  const response = await fetch(`http://localhost:3000/api/residentManage/update/${id}`, {
+  const response = await fetch(`/api/residentManage/update/${id}`, {
     method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,

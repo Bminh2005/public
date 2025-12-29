@@ -13,7 +13,7 @@ async function getKPIData() {
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
     // 2. Gọi API lấy dữ liệu thống kê
-    const response = await fetch('http://localhost:3000/api/statistics/dashboard', {
+    const response = await fetch('/api/statistics/dashboard', {
       method: 'GET',
       headers
     });
@@ -80,7 +80,7 @@ async function getMonthlyChartData(year) {
     const headers = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    const url = `http://localhost:3000/api/statistics/dashboard?year=${encodeURIComponent(year)}`;
+    const url = `/api/statistics/dashboard?year=${encodeURIComponent(year)}`;
     const resp = await fetch(url, { method: 'GET', headers });
 
     if (!resp.ok) {
