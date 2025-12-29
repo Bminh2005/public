@@ -1,0 +1,113 @@
+<!-- KPI STATS -->
+<section class="kpis">
+  <article class="kpi kpi--blue">
+    <div class="kpi__title">Tổng phản ánh</div>
+    <div class="kpi__value" id="totalFeedback">0</div>
+  </article>
+  <article class="kpi kpi--orange">
+    <div class="kpi__title">Đang xử lý</div>
+    <div class="kpi__value" id="processingFeedback">0</div>
+  </article>
+  <article class="kpi kpi--green">
+    <div class="kpi__title">Đã xử lý</div>
+    <div class="kpi__value" id="resolvedFeedback">0</div>
+  </article>
+</section>
+
+<div class="card card--table">
+  <div class="card__header card__header--wrap">
+    <h2>📣 Danh sách phản ánh / Kiến nghị</h2>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <input type="text" id="feedbackSearch" class="input" placeholder="🔍 Tìm theo tên, số điện thoại..."
+        style="flex:1;min-width:200px;" />
+      <select id="feedbackTypeFilter" class="input" style="width:150px;">
+        <option value="">Tất cả loại</option>
+        <option value="An ninh trật tự">An ninh trật tự</option>
+        <option value="Vệ sinh môi trường">Vệ sinh môi trường</option>
+        <option value="Cơ sở hạ tầng vật chất">Cơ sở hạ tầng vật chất</option>
+        <option value="Dịch vụ">Dịch vụ</option>
+        <option value="Khác">Khác</option>
+      </select>
+      <select id="feedbackStatusFilter" class="input" style="width:150px;">
+        <option value="">Tất cả trạng thái</option>
+        <option value="Đang xử lý">Đang xử lý</option>
+        <option value="Đã xử lý">Đã xử lý</option>
+      </select>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="table" id="feedbackTable">
+      <thead>
+        <tr>
+          <th style="width:50px;">STT</th>
+          <th>Họ tên</th>
+          <th>Loại</th>
+          <th>Trạng thái</th>
+          <th>Ngày gửi</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div id="emptyStateFeedback" class="empty" style="display:none;">Không có dữ liệu phù hợp</div>
+  <div class="table__footer">
+    <button class="ghost" id="prevPageFeedback">← Trước</button>
+    <span id="pageInfoFeedback">Trang 1/1</span>
+    <button class="ghost" id="nextPageFeedback">Sau →</button>
+  </div>
+</div>
+
+
+
+<!-- Modal: Feedback Detail -->
+<div id="feedbackDetailModal" class="modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__content" style="max-width:700px;">
+    <div class="modal__header">
+      <h2>Chi tiết phản ánh</h2>
+      <button id="closeFeedbackDetailModal" class="modal__close" aria-label="Đóng">×</button>
+    </div>
+    <div class="modal__body">
+      <div class="household-info">
+        <div class="info-row">
+          <span class="label">Họ tên:</span>
+          <span class="value" id="detailName">-</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Địa chỉ / Hộ khẩu:</span>
+          <span class="value" id="detailAddr">-</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Loại phản ánh:</span>
+          <span class="value" id="detailType">-</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Ngày gửi:</span>
+          <span class="value" id="detailDate">-</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Trạng thái:</span>
+          <span class="value" id="detailStatus">-</span>
+        </div>
+      </div>
+      <h3 style="margin-top:16px;margin-bottom:8px;">📝 Nội dung phản ánh</h3>
+      <div id="detailContent"
+        style="background:#f8fafc;border-radius:12px;padding:12px;min-height:80px;font-size:14px;line-height:1.6;">-
+      </div>
+
+      <h3 style="margin-top:20px;margin-bottom:12px;">⚙️ Xử lý phản ánh</h3>
+      <form id="feedbackStatusForm">
+        <div class="form__group">
+          <label for="feedback_note">Ghi chú xử lý</label>
+          <textarea id="feedback_note" class="input" rows="3"
+            placeholder="Nhập ghi chú về quá trình xử lý..."></textarea>
+        </div>
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary">✓ Lưu xử lý</button>
+          <button type="button" id="closeFeedbackFormBtn" class="btn">Đóng</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

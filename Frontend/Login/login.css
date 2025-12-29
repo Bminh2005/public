@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, rgba(11, 26, 58, 0.5) 0%, rgba(15, 34, 74, 0.5) 100%),
+              url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop') center/cover fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+/* ===== Khung tổng ===== */
+.container {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  transition: all 0.6s ease-in-out;
+}
+
+/* Panel chứa form: căn GIỮA dọc + ngang */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: all 0.6s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 👈 giữa dọc/ngang */
+}
+
+/* Bản thân form: gọn, auto-height để báo lỗi nở ra vẫn giữ giữa */
+.container form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 24px 40px 28px;
+  height: auto;
+  /* 👈 thay vì 100% */
+  width: 100%;
+  max-width: 420px;
+  /* 👈 gọn và dễ căn giữa */
+  margin: 0 auto;
+}
+
+.container input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  font-size: 14px;
+  border-radius: 10px;
+  width: 100%;
+  outline: none;
+  transition: border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.container input:focus {
+  background-color: #fff;
+  border: 2px solid #0b1a3a;
+  box-shadow: 0 0 0 4px rgba(11, 26, 58, .12);
+}
+
+.container button {
+  background: linear-gradient(135deg, #0b1a3a, #0f224a);
+  color: #fff;
+  font-size: 12px;
+  padding: 12px 45px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: background .2s ease, transform .02s ease-in;
+}
+
+.container button:hover {
+  background: linear-gradient(135deg, #0f224a, #132d54);
+}
+
+.container button:active {
+  transform: translateY(1px);
+}
+
+.container button.hidden {
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+/* ===== Vị trí các panel ===== */
+.sign-in {
+  left: 0;
+  z-index: 2;
+}
+
+.container.active .sign-in {
+  transform: translateX(100%);
+}
+
+.sign-up {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.active .sign-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: move .6s;
+}
+
+@keyframes move {
+
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* ===== Toggle gradient ===== */
+.toggle-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+  border-radius: 150px 0 0 100px;
+  z-index: 1000;
+}
+
+.container.active .toggle-container {
+  transform: translateX(-100%);
+  border-radius: 0 150px 100px 0;
+}
+
+.toggle {
+  background: linear-gradient(135deg, #0b1a3a, #0f224a);
+  color: #fff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: all .6s ease-in-out;
+}
+
+.container.active .toggle {
+  transform: translateX(50%);
+}
+
+.toggle-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 30px;
+  transition: all .6s ease-in-out;
+}
+
+.toggle-left {
+  transform: translateX(-200%);
+}
+
+.container.active .toggle-left {
+  transform: translateX(0);
+}
+
+.toggle-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.active .toggle-right {
+  transform: translateX(200%);
+}
+
+.toggle-panel h1 {
+  font-size: 26px;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.toggle-panel p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* ===== Field + Error: ban đầu SÁT, chỉ GIÃN khi có lỗi ===== */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  /* không chừa đáy mặc định */
+}
+
+.field label {
+  margin-bottom: 6px;
+}
+
+.field small.error {
+  color: #ef4444;
+  font-size: 12px;
+  line-height: 1.2;
+  max-height: 0;
+  /* đóng */
+  opacity: 0;
+  /* ẩn */
+  overflow: hidden;
+  margin-top: 0;
+  /* không tạo khoảng trống */
+  transition: max-height .2s ease, opacity .15s ease, margin-top .2s ease;
+}
+
+.field.is-invalid small.error {
+  max-height: 40px;
+  /* mở đủ cho 1-2 dòng */
+  opacity: 1;
+  margin-top: 6px;
+  /* lúc này mới giãn ra */
+}
+
+.field.is-invalid input {
+  border: 1px solid #ef4444 !important;
+  background: rgba(239, 68, 68, 0.05) !important;
+  animation: shake .24s ease;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(2px);
+  }
+
+  75% {
+    transform: translateX(-2px);
+  }
+}
+
+/* ===== Password + nút 👁 (đen mặc định) ===== */
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-container .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6) !important;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.password-container .toggle-password:hover {
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.password-container .toggle-password:focus-visible {
+  outline: 2px solid #1f4ad8;
+  outline-offset: 2px;
+}
+
+/* ===== Link phụ ===== */
+a {
+  color: #1f4ad8;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container {
+    width: 90vw;
+  }
+
+  .container form {
+    max-width: 100%;
+    padding: 20px 30px;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  .toggle-container {
+    display: none;
+  }
+
+  .sign-in {
+    transform: translateX(0) !important;
+  }
+
+  .container.active .sign-in {
+    transform: translateX(100%);
+  }
+
+  .sign-up {
+    transform: translateX(100%) !important;
+  }
+
+  .container.active .sign-up {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    border-radius: 20px;
+    min-height: 400px;
+  }
+
+  .container form {
+    padding: 16px 20px;
+  }
+
+  .container input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .container button {
+    padding: 10px 30px;
+    font-size: 11px;
+  }
+}
+
+
+.toggle-password {
+  width: 24px;
+  /* 👈 cố định chiều rộng */
+  height: 24px;
+  /* 👈 cố định chiều cao nếu cần */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  transition: none;
+  /* 👈 tắt hiệu ứng rung/lệch */
+}

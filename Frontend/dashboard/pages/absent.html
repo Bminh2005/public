@@ -1,0 +1,47 @@
+<!-- KPI THỐNG KÊ -->
+<section class="kpis">
+  <article class="kpi kpi--green">
+    <div class="kpi__title">Đang tạm vắng</div>
+    <div class="kpi__value" id="activeAbsentCount">0</div>
+  </article>
+  <!-- <article class="kpi kpi--red">
+    <div class="kpi__title">Hết Hạn</div>
+    <div class="kpi__value" id="expiredAbsentCount">0</div>
+  </article>
+  <article class="kpi kpi--orange">
+    <div class="kpi__title">Tổng đơn</div>
+    <div class="kpi__value" id="totalAbsentCount">0</div>
+  </article> -->
+</section>
+
+<!-- DANH SÁCH NGƯỜI ĐANG TẠM VẮNG -->
+<div class="card">
+  <div class="card__header card__header--wrap">
+    <h2>📍 Danh sách người đang tạm vắng</h2>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <input type="text" id="absentActiveSearch" class="input" placeholder="Tìm theo tên..."
+        style="flex:1;max-width:300px;">
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="table" id="absentActiveTable">
+      <thead>
+        <tr>
+          <th style="width:50px;">STT</th>
+          <th>Họ tên</th>
+          <th>Từ ngày</th>
+          <th>Đến ngày</th>
+          <th>Lý do</th>
+          <th>Còn lại</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="emptyStateAbsentActive" class="empty" style="display:none;">Không có người nào đang tạm vắng</div>
+  </div>
+  <div class="table__footer">
+    <button class="ghost" id="prevPageAbsentActive">← Trước</button>
+    <span id="pageInfoAbsentActive">Trang 1/1</span>
+    <button class="ghost" id="nextPageAbsentActive">Sau →</button>
+  </div>
+</div>
