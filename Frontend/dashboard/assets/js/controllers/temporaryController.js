@@ -188,7 +188,7 @@ async function openTempDetail(soHK) {
   let members = [];
 
   try {
-    const response = await fetch(`http://localhost:3000/api/get/tempDetail/${curTemp.id_dk}`,
+    const response = await fetch(`/api/get/tempDetail/${curTemp.id_dk}`,
       {
         method: 'GET',
         headers: {
@@ -272,7 +272,7 @@ async function approveTempRecord(id) {
   if (record) {
     // goi API duyet don
     try {
-      const response = await fetch(`http://localhost:3000/api/action/approveTemp/${record.id_dk}`, {
+      const response = await fetch(`/api/action/approveTemp/${record.id_dk}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -313,7 +313,7 @@ async function rejectTempRecord(id) {
   console.log(record);
   if (record) {// goi API duyet don
     try {
-      const response = await fetch(`http://localhost:3000/api/action/rejectTemp/${record.id_dk}`, {
+      const response = await fetch(`/api/action/rejectTemp/${record.id_dk}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -376,7 +376,7 @@ function filterActive() {
 
 async function getTamTruTemp() {
   try {
-    const response = await fetch('http://localhost:3000/api/get/tamtruTemp', {
+    const response = await fetch('/api/get/tamtruTemp', {
       method: 'GET',
       headers: {
         "Content-Type": 'application/json',
@@ -435,7 +435,7 @@ async function renderActiveTable() {
 
 const getAllTemp = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/get/allTemp',
+    const response = await fetch('/api/get/allTemp',
       {
         method: 'GET',
         headers: {

@@ -47,8 +47,8 @@ app.use("/api", householdsManagerRoute);
 app.use('/api/residentManage', residentManageRoute);
 app.use('/api/manageabsent', manageabsentRoute);
 // Tuyến cần authMiddleware
-app.use("/api", authMiddleware, registerRoute);
-app.use("/api", authMiddleware, newresidentRoute);
+app.use("/api", registerRoute);
+app.use("/api", newresidentRoute);
 
 // Temporary routes (was required earlier but not mounted)
 app.use("/api", temporaryRoute);

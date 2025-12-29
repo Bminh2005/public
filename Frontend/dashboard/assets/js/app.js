@@ -13,22 +13,22 @@ function initChartDefaults() {
 // Application initialization
 async function init() {
   console.log('🚀 Initializing Dashboard v2.4...');
-  
+
   // Setup Chart.js
   initChartDefaults();
-  
+
   // Bind UI components
   bindSidebar();
   bindLogout();
   bindMenu();
-  
+
   // Initialize router
   initRouter();
-  
+
   // Navigate to initial route
   const initialRoute = location.hash.replace('#/', '') || 'overview';
   await navigate(initialRoute);
-  
+
   console.log('✅ Dashboard ready!');
 }
 

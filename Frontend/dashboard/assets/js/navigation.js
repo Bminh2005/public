@@ -35,13 +35,13 @@ function setActiveMenu(route) {
 async function loadPageContent(route) {
   const mainContent = document.getElementById('mainContent');
   if (!mainContent) return;
-  
+
   const pageUrl = routes[route]?.page;
   if (!pageUrl) {
     console.warn(`No page found for route: ${route}`);
     return;
   }
-  
+
   try {
     const response = await fetch(pageUrl);
     const html = await response.text();
@@ -57,13 +57,13 @@ export async function navigate(route = 'overview') {
   if (!routeConfig) {
     route = 'overview';
   }
-  
+
   setActiveMenu(route);
   document.getElementById('viewTitle').textContent = routes[route].title;
-  
+
   // Load page HTML
   await loadPageContent(route);
-  
+
   // Initialize controller
   const controller = controllers[route];
   if (controller) {
